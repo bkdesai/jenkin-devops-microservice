@@ -42,14 +42,16 @@ pipeline {
 				sh "mvn package -DskipTests"
 			}
 		}
-		stage('Build Docker Image'){
+		stage('Push Docker Image') {
 			steps {
 				//"docker build -t bkdesai/currency-exchange-devops:$env.BUILD_TAG"
-				script{
+				script {
 					docker.withRegistry('', 'dockerhub2') {
 						//dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}", '.')
+						//dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
+						//dockerImage.push()
 						dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
-						dockerImage.push()
+						dockerImage.Push()
 					}
 				}
 			}
