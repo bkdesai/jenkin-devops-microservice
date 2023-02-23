@@ -47,6 +47,12 @@ pipeline {
 				//"docker build -t bkdesai/currency-exchange-devops:$env.BUILD_TAG"
 				script{
 					dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}", '.')
+				}
+			}
+		}
+		stage('Push Docker image') {
+			steps {
+				script {
 					docker.withRegistry('', 'dockerhub2') {
 						dockerImage.Push();
 						dockerImage.Push('latest');
@@ -54,7 +60,6 @@ pipeline {
 				}
 			}
 		}
-		
 	} 
 	post {
 		always {
