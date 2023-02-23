@@ -48,7 +48,7 @@ pipeline {
 				script{
 					//docker.withRegistry('', 'dockerhub2') {
 						//dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}", '.')
-						dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
+						//dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
 					//	dockerImage.push()
 					//}
 				}
@@ -58,6 +58,7 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistry('', 'dockerhub2') {
+						dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
 						dockerImage.Push()
 						dockerImage.Push('latest')
 						//dockerimage.push 'bkdesai/currency-exchange-devops:${env.BUILD_TAG}'
