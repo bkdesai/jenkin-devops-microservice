@@ -44,9 +44,9 @@ pipeline {
 		}
 		stage('Build Docker Image'){
 			steps {
-				//"docker build -t bkdesai/currency-exchange-devops:$env.BUILD_TAG"
+				//"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
 				script{
-					dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
+					dockerImage = docker.build("in28min/currency-exchange-devops:${env.BUILD_TAG}")
 				}
 			}
 		}
