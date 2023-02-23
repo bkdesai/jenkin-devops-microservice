@@ -49,7 +49,7 @@ pipeline {
 					dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
 				}
 			}
-		})
+		}
 		stage('Push Docker image'){
 			steps{
 				script{
