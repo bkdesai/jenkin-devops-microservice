@@ -54,8 +54,9 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistry('', 'dockerhub2') {
-						dockerImage.Push();
+						//dockerImage.Push();
 						//dockerImage.Push('latest');
+						dockerimage.push 'bkdesai/currency-exchange-devops:${env.BUILD_TAG}'
 					}
 				}
 			}
