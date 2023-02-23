@@ -50,10 +50,10 @@ pipeline {
 				}
 			}
 		}
-		stage('Push Docker image'){
-			steps{
-				script{
-					docker.withRegistry('', 'dockerhub'){
+		stage('Push Docker image') {
+			steps {
+				script {
+					docker.withRegistry('', 'dockerhub1') {
 						dockerImage.Push();
 						dockerImage.Push('latest');
 					}
