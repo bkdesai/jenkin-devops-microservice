@@ -60,7 +60,7 @@ pipeline {
 					docker.withRegistry('', 'dockerhub2') {
 						dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
 						dockerImage.Push()
-						dockerImage.Push('latest')
+						//dockerImage.Push('latest')
 						//dockerimage.push 'bkdesai/currency-exchange-devops:${env.BUILD_TAG}'
 					}
 				}
