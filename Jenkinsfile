@@ -46,25 +46,25 @@ pipeline {
 			steps {
 				//"docker build -t bkdesai/currency-exchange-devops:$env.BUILD_TAG"
 				script{
-					docker.withRegistry('', 'dockerhub2') {
+					//docker.withRegistry('', 'dockerhub2') {
 						//dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}", '.')
 						dockerImage = docker.build("bkdesai/currency-exchange-devops:${env.BUILD_TAG}")
-						dockerImage.push()
+					//	dockerImage.push()
+					//}
+				}
+			}
+		}
+		stage('Push Docker image') {
+			steps {
+				script {
+					docker.withRegistry('', 'dockerhub2') {
+						dockerImage.Push()
+						dockerImage.Push('latest')
+						//dockerimage.push 'bkdesai/currency-exchange-devops:${env.BUILD_TAG}'
 					}
 				}
 			}
 		}
-		/* stage('Push Docker image') {
-			steps {
-				script {
-					docker.withRegistry('', 'dockerhub2') {
-						//dockerImage.Push();
-						//dockerImage.Push('latest');
-						dockerimage.push 'bkdesai/currency-exchange-devops:${env.BUILD_TAG}'
-					}
-				}
-			}
-		} */
 	} 
 	post {
 		always {
