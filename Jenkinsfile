@@ -50,7 +50,16 @@ pipeline {
 				}
 			}
 		}
-		
+		stage('Push Docker image'){
+			steps{
+				script{
+					docker.withRegistry('', 'dockerhub'){
+						dockerImage.Push();
+						dockerImage.Push('latest');
+					}
+				}
+			}
+		}
 	} 
 	post {
 		always {
