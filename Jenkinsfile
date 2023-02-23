@@ -3,10 +3,16 @@ pipeline {
 	//agent { docker { image 'maven:3.6.3' } }
 	//agent { docker { image 'liferay/portal:latest' } }
 	//docker pull liferay/portal:latest
+	environment{
+		dockerHome = tool 'myDocker' 
+		mavenHome = tool 'myMaven'
+		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+	}
 	stages {
 		stage('Build'){
 			steps {
-				//sh 'node --version'
+				sh 'mvn --version'
+				sh 'docker version'
 				echo "Build"
 				echo "$PATH"
 				echo "Build number : $env.BUILD_NUMBER"
