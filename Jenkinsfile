@@ -42,7 +42,7 @@ pipeline {
 				sh "mvn package -DskipTests"
 			}
 		}
-		stage('Build Docker Image'){
+		/* stage('Build Docker Image'){
 			steps {
 				//"docker build -t bkdesai/currency-exchange-devops:$env.BUILD_TAG"
 				script{
@@ -53,7 +53,7 @@ pipeline {
 					//}
 				}
 			}
-		}
+		} */
 		stage('Push Docker image') {
 			steps {
 				script {
