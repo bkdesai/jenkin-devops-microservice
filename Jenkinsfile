@@ -54,7 +54,7 @@ pipeline {
 			steps {
 				script {
 					docker.withRegistry('', 'dockerhub2') {
-						dockerImage.Push();
+						//dockerImage.Push();
 						dockerImage.Push('latest');
 					}
 				}
